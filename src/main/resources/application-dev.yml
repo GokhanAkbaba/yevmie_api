@@ -1,0 +1,10 @@
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:postgresql://localhost:5432/yevmie_db
+    username: yevmie_user
+    password: yevmie_password
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true 

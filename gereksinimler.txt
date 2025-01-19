@@ -1,0 +1,35 @@
+yevmie adında bir mobil uygulama yapmak istiyorum. Uygulamanın backend apisini tam ve eksiksiz sakin bir şekilde kodla, aşama aşama. uygulamanın hangi sayfasında ne varsa anlattım. apiyi ona göre kodlarsın.
+backend java spring boot kullanılacak, veri tabanında postgresql kullanılacak.
+Access token ve refreshtoken kullanılacak, JWT token kullan. Swagger kullan.
+#Kullanıcı Girişi
+Kullanıcılar uygulamaya kullanıcı adı/mail ve şfire ile girebilcek.
+kayıt işlemi sırasında ad soyad il şirket ismi telefon bilgisi kayıt edilecek.
+kullanıcın her işlemini logla, hata loglama yap.
+yetkilendirme sistemini esnek yap çünkü yetkiler modüle göre verilecek.
+
+
+#Uygulama Ana Sayfa Resim1
+Kasa adı altındaki başlıkta toplam gider, toplam gelir ve toplam cari bilgisi listelenecek.
+Günlük adı altındaki başlıkta o günlük gelir ve gider bilgisi listelencek.
+Şantiye adı altıdaki başlıkta şantiyelerin toplam harcanan ücret listelencek.
+
+#Cari Ekleme Sayfası
+Mobil Uygulamanın Cari Sayfası Aşağıdaki Gibi Olacak. İlgi Sayfalarda gösterilecek ya da kayıt edilecek bilgiler zamanla artıp ya da azalabilir. Bu sebeple backend api oldukça esnek ve modüler yapıda olmalı.
+Cari sekmesi 3 alt menüden oluşur. 
+1. menüde "Cari Adı Ekle" menüsüdür. "Cari Adı Ekle" menüde Comboboxtan il seçimi yapılacak ve "Cari Adı" bilgisi alınacak. "Cari Adı" bilgisi uzunluğu 236 harf olmalıdır.Bu bilgiler alındıktan sonra kaydet butonuna basıldığı zaman veritabanına kayıt edilecek. Aynı menüde aynı zamanda sayfanın alt kısmında son eklenen cari adı ve il bilgisini listeleyeceğim. kullanıcı isterse burada ilgili kayıtı silebilir ya da düzenleyebilir. Düzenleme butonuna basıldığı zaman ilgili cari adı ve il bilgisi getirilecek, güncelle butonu ile veri tabanındaki bilgi güncellencek ama verinin önceki halleri de veri tabanında tutulacak.
+2. menüde "Cari Ekle" menüsüdür. "Cari Ekle" menüsünde Comboboxtan şantiye adı bilgisini, Comboboxtan zaten eklenmiş olan "cari adı" bilgisini, Comboboxtan "Tür" bilgisini tür bilgileri "mal alımı ve mal satımı", tutar bilgisini tutar bilgisi sayıdır.açıklama bilgisini açıklama bilgisi long texttir ve pdf olarak bir veya birden fazla fatura vertabanına ekleyebilecek. sayfanın en altında eklenen "son eklenen cari " başlığı adı altında cari bilgisi bulunacak. veriyi ekleyen kişide kayıt edilmelidir.
+3.menüde "Listeleme" menüsüdür. "Listeleme" menüsünde eklenen carilerin bilgileri bulunacak. üzerine tıklanan carinin bilgileri listelencek ve fatura tıklandığı zaman fatura açılacak. Listeleme sayfasının en altında ekleme yapan kullanıcın ad soyad ve ekleme saat ve tarihi yazacak. kullanıcı bu sayfada düzenleme ve silme işlemi yapabilir.
+
+#Gider Ekleme Sayfası
+Mobil Uygulamanın Gider Sayfası Aşağıdaki Gibi Olacak. İlgi Sayfalarda gösterilecek ya da kayıt edilecek bilgiler zamanla artıp ya da azalabilir. Bu sebeple backend api oldukça esnek ve modüler yapıda olmalı.
+Bu sayfa da kayıt işlemi yapılacak veriler, tarih, cari adı, ekleyen kişi(bu bilgi  uygulamada kim giriş yaptıysa o kişi), açıklama, miktar, Birim(m3,m2 vb), birim fiyat, para cinsi(dolar,tl,euro vb),tutar kayıt edilecek. son eklediği kayıt sayfanın enaltında olacak.
+
+#Gelir Ekleme Sayfası
+Mobil Uygulamanın Gelir Sayfası Aşağıdaki Gibi Olacak. İlgi Sayfalarda gösterilecek ya da kayıt edilecek bilgiler zamanla artıp ya da azalabilir. Bu sebeple backend api oldukça esnek ve modüler yapıda olmalı.
+Bu sayfa da kayıt işlemi yapılacak veriler, tarih, ekleyen kişi(bu bilgi  uygulamada kim giriş yaptıysa o kişi), açıklama, tutar, para cinsi(dolar,tl,euro vb),toplam kayıt edilecek. son eklediği kayıt sayfanın enaltında olacak.
+
+#ŞAntiye Ekleme Sayfası
+Mobil Uygulamanın Gelir Sayfası Aşağıdaki Gibi Olacak. İlgi Sayfalarda gösterilecek ya da kayıt edilecek bilgiler zamanla artıp ya da azalabilir. Bu sebeple backend api oldukça esnek ve modüler yapıda olmalı.
+Şantiye ekleme sayfası 2 alt menüden oluşur.
+1. menüde "Ekle" menüsür. il bilgisi ve şantiye adı bilgisi kayıt edilecek.
+2. menüde "Listele" menüsür. eklenen verilerin gösterieceği yerdir. ilgili veriler silinebir ya da düzenlenebilir. şantiye adına tıklandığı zaman şantiye ayrıntısına gidecektir ve bütün eklenen bilgileri görebilecek. bu sayda filtreleme yapabilecek

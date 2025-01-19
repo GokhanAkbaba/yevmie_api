@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: yevmie-api-dev
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/yevmie_db
+      - SPRING_DATASOURCE_USERNAME=yevmie_user
+      - SPRING_DATASOURCE_PASSWORD=yevmie_password
+      - SPRING_REDIS_HOST=redis
+      - SPRING_RABBITMQ_HOST=rabbitmq
+    volumes:
+      - ./:/app
+      - ~/.m2:/root/.m2
+    depends_on:
+      - db
+      - redis
+      - rabbitmq
+    networks:
+      - yevmie-network-dev
+    restart: unless-stopped
+
+  db:
+    image: postgres:15-alpine
+    container_name: yevmie-db-dev
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=yevmie_db
+      - POSTGRES_USER=yevmie_user
+      - POSTGRES_PASSWORD=yevmie_password
+    volumes:
+      - postgres-data-dev:/var/lib/postgresql/data
+      - ./src/main/resources/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - yevmie-network-dev
+
+  redis:
+    image: redis:7-alpine
+    container_name: yevmie-redis-dev
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data-dev:/data
+    networks:
+      - yevmie-network-dev
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: yevmie-rabbitmq-dev
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    volumes:
+      - rabbitmq-data-dev:/var/lib/rabbitmq
+    networks:
+      - yevmie-network-dev
+
+networks:
+  yevmie-network-dev:
+    driver: bridge
+
+volumes:
+  postgres-data-dev:
+  redis-data-dev:
+  rabbitmq-data-dev: 
